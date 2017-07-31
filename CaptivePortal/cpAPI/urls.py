@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r"^info/$", views.index),
-    url(r"^userusage/$", views.user_usage),
-    url(r"^logout/$", views.logout),
+    path(r"^info/$", views.index),
+    path(r"^userusage/$", views.user_usage),
+    path(r"^logout/$", views.logout),
 ]

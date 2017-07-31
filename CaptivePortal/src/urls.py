@@ -15,22 +15,18 @@ Including another URLconf
 """
 
 import requests
-from django.conf.urls import url, include
+from django.urls import path, include
 
 # from django.contrib import admin
-from django.db.models import Sum, F, Count
+from django.db.models import Sum, F
 from cpAPI.models import Radacct, Radusergroup, Radpackages, Raddaily
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
-from django.views.decorators.cache import cache_page
 from django.db.models.functions import Coalesce
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
-import xlsxwriter
 
 
 def get_user_usage(username):
@@ -434,18 +430,21 @@ def report_test(request):
 
 
 urlpatterns = [
-    url(r"^api/v1/", include("cpAPI.urls")),
-    url(r"^usage/user/daily/$", UserUsageDaily.as_view()),
-    # url(r'^usage/user/hourly/$', UserHourlyUsage.as_view()),
-    url(r"^top/$", TopUsers.as_view()),
-    url(r"^usage/total/$", TotalUsage.as_view()),
-    url(r"^usage/group/$", GroupUsage.as_view()),
-    url(r"^online/group/$", count_group_online),
-    # url(r'^log/$', QuotaLog.as_view()),
-    url(r"^groupchange/$", group_changed),
-    url(r"^alaki/", ALAKI.as_view()),
-    url(r"^account/$", account),
-    url(r"^repost_test/$", report_test)
-    # url(r'^admin/', admin.site.urls),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(r"^api/v1/", include("cpAPI.urls")),
+    path(r"^usage/user/daily/$", UserUsageDaily.as_view()),
+    # path(r'^usage/user/hourly/$', UserHourlyUsage.as_view()),
+    path(r"^top/$", TopUsers.as_view()),
+    path(r"^usage/total/$", TotalUsage.as_view()),
+    path(r"^usage/group/$", GroupUsage.as_view()),
+    path(r"^online/group/$", count_group_online),
+    # path(r'^log/$', QuotaLog.as_view()),
+    path(r"^groupchange/$", group_changed),
+    path(r"^alaki/", ALAKI.as_view()),
+    path(r"^account/$", account),
+    path(r"^repost_test/$", report_test),
+    # path(r'^admin/', admin.site.urls),
+    # path(
+    #     r"^api-auth/",
+    #     include("rest_framework.urls", namespace="rest_framework"),
+    # ),
 ]
