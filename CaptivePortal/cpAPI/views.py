@@ -134,10 +134,13 @@ def user_usage(request):
     if request.method == "POST":
         username = request.data.get("username")
         ip = request.data.get("ip")
-    if request.method == "GET":
+    elif request.method == "GET":
         username = request.GET.get("username", None)
         ip = request.GET.get("ip", None)
-    if not username:
+    else:
+        return
+
+    if username is not None:
         rad_record = (
             Radacct.objects.using("freeRadius")
             .values("username")
@@ -219,7 +222,11 @@ def user_usage(request):
         }
 
     # user usage
-    # usage = Userusage.objects.using('freeRadius').filter(username=result['username']).first()
+    # usage = (
+    #    Userusage.objects.using("freeRadius")
+    #    .filter(username=result["username"])
+    #    .first()
+    # )
     raddaily_record_monthly = Raddaily.objects.using("freeRadius").filter(
         username=result["username"],
         createddate__lte=datetime.datetime.today().date(),
