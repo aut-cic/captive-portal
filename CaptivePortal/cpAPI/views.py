@@ -1,6 +1,6 @@
-# from django.http import HttpResponse
 import datetime
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import Radacct, Radusergroup, Radpackages, Radgroupreply, Raddaily
 from .utils import disconnect
 from django.db.models import Sum
@@ -11,7 +11,10 @@ logger = logging.getLogger(__name__)
 
 
 def get_ip(request):
-    """Returns the IP of the request, accounting for the possibility of being behind a proxy."""
+    """
+    Returns the IP of the request,
+    accounting for the possibility of being behind a proxy.
+    """
     ip = request.META.get("HTTP_X_FORWARDED_FOR", None)
     if ip:
         # X_FORWARDED_FOR returns client1, proxy1, proxy2,...
@@ -307,14 +310,15 @@ def logout(request):
         username = request.data.get("username")
         ip = request.data.get("ip")
         acctuniqueid = request.data.get("acctuniqueid")
-
-    if request.method == "GET":
+    elif request.method == "GET":
         username = request.GET.get("username", None)
         ip = request.GET.get("ip", None)
         acctuniqueid = request.GET.get("acctuniqueid", None)
+    else:
+        return
 
     logging.info(
-        "logout for user {0} , ip {1} and acctuniqueid {2} ".format(
+        "logout for user {} , ip {} and acctuniqueid {} ".format(
             username, ip, acctuniqueid
         )
     )
@@ -330,7 +334,7 @@ def logout(request):
         if rad_record.acctstoptime:
             # TODO: it's mean that there is some problem
             logging.info(
-                "logout for user {0} and ip {1}: user have stoptime.Why?".format(
+                "logout for user {} and ip {}: user have stoptime.Why?".format(
                     username, ip
                 )
             )
