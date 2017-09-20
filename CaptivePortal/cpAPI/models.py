@@ -17,7 +17,7 @@ class Discountfactor(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'discountfactor'
+        db_table = "discountfactor"
 
 
 class Nas(models.Model):
@@ -32,7 +32,7 @@ class Nas(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'nas'
+        db_table = "nas"
 
 
 class Radacct(models.Model):
@@ -64,7 +64,7 @@ class Radacct(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radacct'
+        db_table = "radacct"
 
 
 class Radcheck(models.Model):
@@ -75,7 +75,7 @@ class Radcheck(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radcheck'
+        db_table = "radcheck"
 
 
 class Raddaily(models.Model):
@@ -86,8 +86,8 @@ class Raddaily(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'raddaily'
-        unique_together = (('username', 'createddate'),)
+        db_table = "raddaily"
+        unique_together = (("username", "createddate"),)
 
 
 class Radgroupcheck(models.Model):
@@ -98,7 +98,7 @@ class Radgroupcheck(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radgroupcheck'
+        db_table = "radgroupcheck"
 
 
 class Radgroupreply(models.Model):
@@ -109,7 +109,7 @@ class Radgroupreply(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radgroupreply'
+        db_table = "radgroupreply"
 
 
 class Radpackages(models.Model):
@@ -121,18 +121,20 @@ class Radpackages(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radpackages'
+        db_table = "radpackages"
 
 
 class Radpostauth(models.Model):
     username = models.CharField(max_length=64)
-    pass_field = models.CharField(db_column='pass', max_length=64)  # Field renamed because it was a Python reserved word.
+    pass_field = models.CharField(
+        db_column="pass", max_length=64
+    )  # Field renamed because it was a Python reserved word.
     reply = models.CharField(max_length=32)
     authdate = models.DateTimeField()
 
     class Meta:
         managed = False
-        db_table = 'radpostauth'
+        db_table = "radpostauth"
 
 
 class Radreply(models.Model):
@@ -143,7 +145,7 @@ class Radreply(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radreply'
+        db_table = "radreply"
 
 
 class Radusergroup(models.Model):
@@ -154,4 +156,4 @@ class Radusergroup(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'radusergroup'
+        db_table = "radusergroup"
