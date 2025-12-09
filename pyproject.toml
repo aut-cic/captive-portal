@@ -1,0 +1,24 @@
+[project]
+name = "captive-portal"
+version = "0.1.0"
+description = "Captive portal API for reporting user Internet usage"
+readme = "README.md"
+requires-python = ">=3.14,<4.0"
+dependencies = [
+  "django==6.0",
+  "django-filter==25.2",
+  "djangorestframework==3.16.1",
+  "markdown==3.10",
+  "pyrad==2.4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "django-stubs[compatible-mypy]==5.2.8",
+  "django-stubs-ext==5.2.8",
+  "mypy==1.19.0",
+  "tomli==2.0.1",
+  "types-pytz==2025.2.0.20251108",
+  "types-pyyaml==6.0.12.20250915",
+  "typing-extensions==4.15.0",
+]
