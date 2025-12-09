@@ -1,24 +1,135 @@
 {% extends "rest_framework/base.html" %}
-{#{% block style %}#}
-{##}
-{#    <link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.min.css" type="text/css">#}
-{#    {{ block.super }}#}
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/css/bootstrap-datetimepicker-standalone.min.css.map" />#}
-{#{% endblock %}#}
-{#{% block bootstrap_navbar_variant %}{% endblock %}#}
-{##}
-{#{% block script %}#}
-{#    {{ block.super }}#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js"></script>#}
-{#        <script type="text/javascript">#}
-{#            $(function () {#}
-{#                $("#startdate").datetimepicker({#}
-{#                            format: 'YYYY-MM-DD HH:mm'#}
-{#                });#}
-{#                $("#stopdate").datetimepicker({#}
-{#                            format: 'YYYY-MM-DD HH:mm'#}
-{#                });#}
-{#            });#}
-{#    </script>#}
-{#{% endblock %}#}
+
+{% block head %}
+  {{ block.super }}
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+    :root {
+      --ink: #0c1829;
+      --muted: #4f647a;
+      --card: #f7f9fc;
+      --accent: #1f7aec;
+      --accent-strong: #0f5bd8;
+      --border: #d7deeb;
+      --glow: 0 18px 45px rgba(31, 122, 236, 0.18);
+    }
+
+    body {
+      font-family: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #e8f1ff 0, #eef5ff 25%, #f7f9fc 60%, #ffffff 100%);
+      color: var(--ink);
+    }
+
+    .navbar.navbar-default {
+      border: none;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 12px 40px rgba(8, 22, 48, 0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar-default .navbar-brand,
+    .navbar-default .navbar-nav > li > a {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .content {
+      padding-top: 30px;
+    }
+
+    .container {
+      max-width: 1080px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--glow);
+      padding: 26px 28px;
+      margin-bottom: 24px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    p,
+    .lead,
+    .text-muted {
+      color: var(--muted);
+    }
+
+    .btn-primary,
+    .btn-default {
+      border-radius: 10px;
+      font-weight: 700;
+      padding: 10px 16px;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      border: none;
+      box-shadow: 0 12px 30px rgba(31, 122, 236, 0.25);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 38px rgba(31, 122, 236, 0.33);
+    }
+
+    .btn-default {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      box-shadow: 0 8px 18px rgba(12, 24, 41, 0.06);
+    }
+
+    form .form-group label {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-control {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: none;
+      padding: 10px 12px;
+      transition: border-color 120ms ease, box-shadow 120ms ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(31, 122, 236, 0.18);
+    }
+
+    .well {
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(12, 24, 41, 0.08);
+    }
+
+    .page-header {
+      border: none;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .breadcrumbs {
+      font-family: "Space Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+  </style>
+{% endblock %}
